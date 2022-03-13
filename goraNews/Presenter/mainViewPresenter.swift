@@ -31,7 +31,7 @@ class mainViewPresenter {
         var news = [categoryStruct]()
         
         for category in categories.allCases {
-            guard let url = URL(string: "https://newsapi.org/v2/top-headlines?category=\(category.rawValue.lowercased())&apiKey=8b55d3b8ef8c4dda947d2c16d2e66bba&country=us") else {
+            guard let url = URL(string: "https://newsapi.org/v2/top-headlines?category=\(category.rawValue.lowercased())&apiKey=38cce8d069244b959171bfaf90d6198e&country=us") else {
                 print("Error with url in category: \(category.rawValue)")
                 continue
             }
@@ -76,6 +76,9 @@ class mainViewPresenter {
         guard arrNews.count > 0 else {
             // Call Cache
             print("No internet or API key is invalid :( ~> Using cache!")
+            DispatchQueue.global().sync {
+                articlePresenter.shared.getData()
+            }
             loadFromCache()
             return
         }
