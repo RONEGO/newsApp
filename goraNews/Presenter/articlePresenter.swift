@@ -41,7 +41,7 @@ class articlePresenter {
                 return
             }
             
-            let queue = DispatchQueue.global(qos: .utility)
+            let queue = DispatchQueue.global(qos: .userInitiated)
             
             queue.async {
                 guard let strongSelf = self else {
